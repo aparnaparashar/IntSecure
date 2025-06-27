@@ -4,10 +4,10 @@
 
 ### System Architecture
 
-+----------------------+       +------------------------+       +--------------------------+
-|     Frontend (UI)    | <---> |     Flask Backend      | <---> |    Trained ML Model      |
-|  HTML + Tailwind CSS |       |      (app.py)          |       |  fraud_model.pkl + scaler|
-+----------------------+       +------------------------+       +--------------------------+
+┌────────────────────┐ ┌───────────────────────┐ ┌────────────────────────┐
+│ User Interface │ ─────▶ │ Flask Backend │ ─────▶ │ ML Model (pkl files) │
+│ (HTML, Tailwind) │ ◀───── │ (app.py handles form) │ ◀───── │ fraud_model + scaler │
+└────────────────────┘ └───────────────────────┘ └────────────────────────┘
 
 User submits transaction         Backend receives and         Model predicts fraud or not,
    details via form              scales inputs                sends response back to user
@@ -89,14 +89,28 @@ pip install -r requirements.txt
 python app.py
 ```
 
-6. **Access the app**
+Sure, Aparna! Here's your cleaned-up and **perfectly separated** section of the `README.md` including:
+
+* Proper spacing
+* Bullet formatting
+* Indented folder structure
+* Consistent markdown styling
+
+---
+
+### App Access
+
+When running locally, access the application at:
 
 ```
 http://127.0.0.1:5000
+```
 
+---
 
 ### Folder Structure
 
+```
 intsecure/
 ├── app.py
 ├── model.ipynb
@@ -109,21 +123,41 @@ intsecure/
 ├── static/
 │   └── style.css
 └── README.md
+```
 
-### Deployment (Render or Other Platforms)
+---
 
-1. Push this project to GitHub
-2. Create a Web Service on [Render](https://render.com)
-3. Configure:
+###  Deployment (Render or Other Platforms)
 
-   * Build command: `pip install -r requirements.txt`
-   * Start command: `python app.py`
-4. Ensure that `fraud_model.pkl`, `scaler.pkl`, and `payment_fraud.csv` are included in your repository
+To deploy this app using Render:
 
+1. Push your project to GitHub
+2. Go to [https://render.com](https://render.com)
+3. Create a new **Web Service** and connect your GitHub repo
+4. Configure the service:
 
-### Author
+   * **Build Command**:
 
-> **Aparna Parashar**
-> © 2025 IntSecure. All rights reserved.
+     ```
+     pip install -r requirements.txt
+     ```
+   * **Start Command**:
+
+     ```
+     python app.py
+     ```
+5. Ensure the following files are present in the root of your repo:
+
+   * `fraud_model.pkl`
+   * `scaler.pkl`
+   * `payment_fraud.csv`
+
+---
+
+###  Author
+
+**Aparna Parashar**
+© 2025 **IntSecure**. All rights reserved.
+
 
 
