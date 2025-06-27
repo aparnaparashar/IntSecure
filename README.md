@@ -2,16 +2,6 @@
 
 **IntSecure** is a machine learning-based fraud detection system designed to identify potentially fraudulent transactions in real time. It provides a clean web interface where users can input transaction details and receive instant feedback on whether the transaction is likely to be fraudulent.
 
-### System Architecture
-
-┌────────────────────┐ ┌───────────────────────┐ ┌────────────────────────┐
-│ User Interface │ ─────▶ │ Flask Backend │ ─────▶ │ ML Model (pkl files) │
-│ (HTML, Tailwind) │ ◀───── │ (app.py handles form) │ ◀───── │ fraud_model + scaler │
-└────────────────────┘ └───────────────────────┘ └────────────────────────┘
-
-User submits transaction         Backend receives and         Model predicts fraud or not,
-   details via form              scales inputs                sends response back to user
-
 ### Features
 
 * Real-time fraud detection based on transaction metadata
