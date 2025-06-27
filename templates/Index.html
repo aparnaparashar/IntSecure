@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IntSecure | Fraud Detection System</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Custom Fonts -->
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      background-attachment: fixed;
+      color: #f1f5f9;
+    }
+    h1 {
+      font-family: 'Rubik', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+  <div class="w-full max-w-3xl bg-[#1e293b] border border-gray-700 rounded-3xl shadow-2xl p-10">
+    <h1 class="text-4xl font-bold text-center text-indigo-300 mb-2">🔐 IntSecure</h1>
+    <p class="text-center text-slate-400 text-base mb-8 italic">Your AI-powered watchdog for shady transactions.</p>
+
+    <form action="/predict" method="POST" class="space-y-6">
+      <div>
+        <label for="transaction_amount" class="block text-sm font-medium text-slate-300">💳 Transaction Amount (₹)</label>
+        <input type="number" name="transaction_amount" step="0.01" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white" />
+      </div>
+
+      <div>
+        <label for="account_balance_before" class="block text-sm font-medium text-slate-300">🏦 Sender’s Balance Before (₹)</label>
+        <input type="number" name="account_balance_before" step="0.01" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white" />
+      </div>
+
+      <div>
+        <label for="account_balance_after" class="block text-sm font-medium text-slate-300">🏦 Sender’s Balance After (₹)</label>
+        <input type="number" name="account_balance_after" step="0.01" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white" />
+      </div>
+
+      <div>
+        <label for="receiver_balance_before" class="block text-sm font-medium text-slate-300">🧾 Receiver’s Balance Before (₹)</label>
+        <input type="number" name="receiver_balance_before" step="0.01" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white" />
+      </div>
+
+      <div>
+        <label for="receiver_balance_after" class="block text-sm font-medium text-slate-300">🧾 Receiver’s Balance After (₹)</label>
+        <input type="number" name="receiver_balance_after" step="0.01" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white" />
+      </div>
+
+      <div>
+        <label for="hour_of_day" class="block text-sm font-medium text-slate-300">⏰ Hour of Transaction (0–23)</label>
+        <input type="number" name="hour_of_day" min="0" max="23" required class="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-white" />
+      </div>
+
+      <button type="submit" class="w-full py-3 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold rounded-xl transition duration-300 shadow-lg">
+        Detect Fraud 🕵️‍♀️
+      </button>
+    </form>
+
+    {% if prediction_text %}
+      <div class="mt-6 text-center text-xl font-bold
+                  {% if 'Fraudulent' in prediction_text %}
+                    text-red-400
+                  {% elif 'Legitimate' in prediction_text %}
+                    text-green-400
+                  {% else %}
+                    text-yellow-400
+                  {% endif %}">
+        {{ prediction_text }}
+      </div>
+    {% endif %}
+
+    <footer class="mt-10 text-center text-xs text-slate-500">© 2025 IntSecure By Aparna — Because Security Isn’t Optional.</footer>
+  </div>
+</body>
+</html>
